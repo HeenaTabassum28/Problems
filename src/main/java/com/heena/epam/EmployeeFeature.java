@@ -7,11 +7,6 @@ public class CountByDepartment {
     public static void main(String[] args) {
         //Override hashcode also
         //List.of(new Employee(1, "heena", "D1"));
-        List<Employee> employees = new ArrayList<>();
-        Map<String, Long> collect = employees.stream()
-                .filter(employee -> employee.getName().equals("MH"))
-                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
-        Collections.sort(employees, Comparator.comparing(Employee::getDoj));
         Map<String, List<Employee>> map = new HashMap<>();
        /* Map<String, Employee> collect1 = map.entrySet().stream()
                 .map(stringListEntry -> {
@@ -27,22 +22,42 @@ public class CountByDepartment {
         //  .collect(Collectors.toMap(Employee::getDepartment, employee -> employee));
 
     }
+
+    public static Map<String, Long> calculate(List<Employee> employees) {
+        return employees.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
+    }
+
+    public static void sortInAscending(List<Employee> employees) {
+        employees.sort(Comparator.comparing(Employee::getDoj));
+    }
+
+    public static void sortInDescending(List<Employee> employees) {
+        employees.sort(Comparator.comparing(Employee::getDoj).reversed());
+    }
+
+    public static Employee findFirstEmployeeJoined(List<Employee> employees) {
+        return employees.stream().min(Comparator.comparing(Employee::getDoj)).get();
+    }
+
+    public static Employee findLastEmployeeJoined(List<Employee> employees) {
+        return employees.stream().max(Comparator.comparing(Employee::getDoj)).get();
+    }
 }
 
 class Employee {
-    private final String id;
+    private final Integer id;
     private final String name;
     private final String department;
     private final Date doj;
 
-    public Employee(String id, String name, String department, Date doj) {
+    public Employee(Integer id, String name, String department, Date doj) {
         this.id = id;
         this.name = name;
         this.department = department;
         this.doj = doj;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
