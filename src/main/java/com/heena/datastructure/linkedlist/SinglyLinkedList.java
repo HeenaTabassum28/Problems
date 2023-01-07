@@ -4,7 +4,7 @@ public class SinglyLinkedList {
     Node head;
     int size = 0;
 
-    /*static*/ class Node {
+    static class Node {
         int data;
         Node next;
 

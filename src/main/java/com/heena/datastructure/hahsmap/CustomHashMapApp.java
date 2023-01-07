@@ -1,8 +1,30 @@
 package com.heena.datastructure.hahsmap;
 
+public class CustomHashMapApp {
+    public static void main(String[] args) {
+        CustomHashMap<Integer, Integer> hashMap = new CustomHashMap<>();
+        hashMap.put(1, 10);
+        hashMap.put(1, 20);
+        hashMap.put(3, 30);
+        System.out.println(hashMap.get(1));
+        hashMap.print();
+        hashMap.remove(1);
+        hashMap.print();
+        CustomHashMap<String, String> stringMap = new CustomHashMap<>();
+        stringMap.put("Heena", "String");
+        stringMap.print();
+    }
+
+}
+
 class CustomHashMap<K, V> {
     private final Entry<K, V>[] array;
+
     private final int capacity = 4;
+
+    public CustomHashMap() {
+        this.array = new Entry[capacity];
+    }
 
     public V get(K key) {
         int index = calculateHashCode(key);
@@ -48,11 +70,11 @@ class CustomHashMap<K, V> {
             }
         }
     }
-
     static class Entry<K, V> {
 
         K key;
         V value;
+
         Entry<K, V> next;
 
         public Entry(K key, V value, Entry<K, V> next) {
@@ -61,10 +83,6 @@ class CustomHashMap<K, V> {
             this.next = next;
         }
 
-    }
-
-    public CustomHashMap() {
-        this.array = new Entry[capacity];
     }
 
     public V put(K newKey, V newValue) {
@@ -97,19 +115,5 @@ class CustomHashMap<K, V> {
         return Math.abs(key.hashCode()) % capacity;
     }
 
-
-}
-
-public class CustomHashMapApp {
-    public static void main(String[] args) {
-        CustomHashMap<Integer, Integer> hashMap = new CustomHashMap<>();
-        hashMap.put(1, 10);
-        hashMap.put(1, 20);
-        hashMap.put(3, 30);
-        System.out.println(hashMap.get(1));
-        hashMap.print();
-        hashMap.remove(1);
-        hashMap.print();
-    }
 
 }

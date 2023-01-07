@@ -3,7 +3,9 @@ package com.heena;
 public class Main {
 
     public static void main(String[] args) {
-       // testOverloading(null);
+        // testOverloading(null);
+        System.out.println("abc".substring(0, 1));
+        System.out.println("abc".substring(1));
     }
 
     public static void testOverloading(Object obj) {

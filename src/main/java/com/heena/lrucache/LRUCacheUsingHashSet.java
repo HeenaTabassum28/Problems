@@ -1,4 +1,4 @@
-package com.heena;
+package com.heena.lrucache;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

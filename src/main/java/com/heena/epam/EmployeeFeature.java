@@ -1,27 +1,12 @@
 package com.heena.epam;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CountByDepartment {
-    public static void main(String[] args) {
-        //Override hashcode also
-        //List.of(new Employee(1, "heena", "D1"));
-        Map<String, List<Employee>> map = new HashMap<>();
-       /* Map<String, Employee> collect1 = map.entrySet().stream()
-                .map(stringListEntry -> {
-                    List<Employee> values = stringListEntry.getValue();
-                    values.sort(Comparator.comparing(Employee::getDoj));
-                    return values.stream().findFirst().get();
-                }).collect(Collectors.toMap(Employee::getDepartment, employee -> employee));*/
-
-
-        Employee employee = map.entrySet().stream()
-                .map(stringListEntry -> stringListEntry.getValue().stream().min(Comparator.comparing(Employee::getDoj)).get())
-                .findFirst().get();
-        //  .collect(Collectors.toMap(Employee::getDepartment, employee -> employee));
-
-    }
+public class EmployeeFeature {
 
     public static Map<String, Long> calculate(List<Employee> employees) {
         return employees.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
